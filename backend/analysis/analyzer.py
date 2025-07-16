@@ -4,7 +4,7 @@ from models.roberta_model import FakeNewsDetector
 from analysis.manual_override import manual_fake_check
 from analysis.web_verifier import fetch_news_sources
 
-# Initialize detector
+# Initialize the ML model
 detector = FakeNewsDetector()
 
 # Load known real/fake claims
@@ -15,6 +15,7 @@ try:
 except (FileNotFoundError, json.JSONDecodeError):
     known_facts = []
 
+# Trusted and satire domains
 TRUSTED_DOMAINS = [
     "bbc.com", "reuters.com", "ndtv.com", "timesofindia.indiatimes.com",
     "theguardian.com", "cnn.com", "nytimes.com", "time.com",
@@ -32,36 +33,19 @@ ABSURD_PHRASES = [
     "chocolate-powered car", "aliens endorse bitcoin", "ice cream stops climate change",
     "oxygen ban", "government bans oxygen", "cows apply for id", "banana president",
     "eiffel tower will be relocated", "eiffel tower moved", "moon made of cheese",
-    "government to ban gravity", "earth is flat and proved by scientists", "drinking bleach", "ingesting bleach", "bleach cure", 
-    "disinfectant as medicine", "bleach approved as cure",
-    "bleach approved for covid", "bleach approved for coronavirus",
+    "government to ban gravity", "earth is flat and proved by scientists", "drinking bleach",
+    "ingesting bleach", "bleach cure", "disinfectant as medicine", "bleach approved as cure",
+    "bleach approved for covid", "bleach approved for coronavirus"
 ]
 
-# Add any known real claims you want to always return REAL for
 KNOWN_REAL_CLAIMS = [
     "india successfully lands chandrayaan-3 near moon's south pole",
     "india successfully landed chandrayaan-3 near the moon's south pole",
     "chandrayaan-3 landed on the moon's south pole",
     "chandrayaan-3 successfully landed",
     "nasa’s perseverance rover discovers organic molecules on mars",
-    "world health organization declares covid-19 no longer a global emergency"
+    "world health organization declares covid-19 no longer a global emergency",
 ]
-
-def dynamic_reason(verdict, confidence):
-    if verdict == "FAKE":
-        if confidence > 0.9:
-            return "Highly confident in detecting fake content due to misleading language patterns."
-        elif confidence > 0.7:
-            return "Likely fake; content shows signs of manipulation or exaggeration."
-        else:
-            return "Possibly fake, but evidence is limited or unclear."
-    else:  # Real
-        if confidence > 0.9:
-            return "Strong indications of authenticity from credible patterns."
-        elif confidence > 0.7:
-            return "Seems real but cross-verification is suggested."
-        else:
-            return "Likely real, but confidence is moderate."
 
 def is_absurd(text):
     text_lower = text.lower()
@@ -79,30 +63,7 @@ def trusted_sources(sources):
 def analyze_text(text, debug=False):
     normalized_text = text.strip().lower()
 
-    # 1. Check known facts
-    for fact in known_facts:
-        if normalized_text == fact.get("text", "").strip().lower():
-            return {
-                "verdict": fact.get("verdict", "UNKNOWN"),
-                "confidence": round(float(fact.get("confidence", 0.0)), 4),
-                "reason": fact.get("reason", ""),
-                "source_type": fact.get("source_type", ""),
-                "tags": fact.get("tags", []),
-                "sources": fact.get("sources", [])
-            }
-
-    # 2. Check for absurd/impossible claims
-    if is_absurd(normalized_text):
-        return {
-            "verdict": "FAKE",
-            "confidence": 1.0,
-            "reason": "Claim contains absurd or impossible content.",
-            "source_type": "absurdity-check",
-            "tags": ["absurd"],
-            "sources": []
-        }
-
-    # 3. Check for known real claims (add multiple variations for robustness)
+    # 1. Known real claim
     if any(known_claim in normalized_text for known_claim in KNOWN_REAL_CLAIMS):
         return {
             "verdict": "REAL",
@@ -113,7 +74,7 @@ def analyze_text(text, debug=False):
             "sources": []
         }
 
-    # 4. Manual override
+    # 2. Manual fake override
     if manual_fake_check(text):
         return {
             "verdict": "FAKE",
@@ -124,7 +85,18 @@ def analyze_text(text, debug=False):
             "sources": []
         }
 
-    # 5. Web verification
+    # 3. Check for absurd phrases
+    if is_absurd(text):
+        return {
+            "verdict": "FAKE",
+            "confidence": 1.0,
+            "reason": "Claim contains absurd or satirical phrases.",
+            "source_type": "absurdity-check",
+            "tags": ["absurd"],
+            "sources": []
+        }
+
+    # 4. Web search
     try:
         sources = fetch_news_sources(text)
     except Exception as e:
@@ -132,6 +104,7 @@ def analyze_text(text, debug=False):
         if debug:
             print(f"Web source fetch failed: {e}")
 
+    # 5. Satire sources?
     if has_satire_source(sources):
         return {
             "verdict": "FAKE",
@@ -142,52 +115,40 @@ def analyze_text(text, debug=False):
             "sources": sources
         }
 
+    # 6. Check if found in trusted sources
     trusted = trusted_sources(sources)
     trusted_count = len(trusted)
     total_count = len(sources)
 
-    # 6. Trusted sources logic
-    if trusted_count >= 3:
+    if trusted_count >= 1:
         confidence = min(1.0, trusted_count / (total_count or 1))
+        verdict = "REAL" if trusted_count >= 3 else "POSSIBLY_REAL"
+        reason = (
+            "Verified by three or more credible sources from the web."
+            if trusted_count >= 3
+            else "Verified by one or two credible sources from the web."
+        )
         return {
-            "verdict": "REAL",
+            "verdict": verdict,
             "confidence": round(confidence, 4),
-            "reason": "Verified by three or more credible sources from the web.",
-            "source_type": "web-search",
+            "reason": reason,
+            "source_type": "web-trusted",
             "tags": ["auto-verified", "trusted-sources"],
             "sources": trusted
         }
-    elif trusted_count in (1, 2):
-        confidence = min(0.5, trusted_count / 4)
+
+    # 7. Found only in untrusted sources (no fallback to ML)
+    if total_count > 0 and trusted_count == 0:
         return {
-            "verdict": "POSSIBLY_REAL",
-            "confidence": round(confidence, 4),
-            "reason": "Verified by only one or two credible sources from the web.",
-            "source_type": "web-search-partial",
-            "tags": ["possibly-real", "trusted-sources"],
-            "sources": trusted
-        }
-    elif total_count > 0:
-        # Fallback to ML model if only untrusted/unrelated sources found
-        ml_result = detector.predict(text)
-        score = float(ml_result.get("confidence", 0.0))
-        verdict = ml_result.get("verdict", "UNKNOWN")
-        if score < 0.3:
-            verdict = "UNCERTAIN"
-        return {
-            "verdict": verdict,
-            "confidence": round(score, 4),
-            "reason": (
-                "No trusted sources found on the web. "
-                f"ML model verdict: {verdict} (confidence: {int(score*100)}%). "
-                f"Model reason: {ml_result.get('reason', '')}"
-            ),
-            "source_type": ml_result.get("source_type", "ml"),
-            "tags": ["ml-fallback", "web-sources"],
+            "verdict": "REAL",  # or "POSSIBLY_FAKE" if you prefer caution
+            "confidence": 0.6,
+            "reason": "Found only in untrusted sources. Be cautious and verify with credible news channels.",
+            "source_type": "web-untrusted",
+            "tags": ["unverified", "untrusted-sources"],
             "sources": sources
         }
 
-    # 7. ML model fallback (if no sources at all)
+    # 8. Not found anywhere → fallback to ML model
     ml_result = detector.predict(text)
     score = float(ml_result.get("confidence", 0.0))
     verdict = ml_result.get("verdict", "UNKNOWN")
@@ -196,8 +157,12 @@ def analyze_text(text, debug=False):
     return {
         "verdict": verdict,
         "confidence": round(score, 4),
-        "reason": ml_result.get("reason", dynamic_reason(verdict, score)),
+        "reason": (
+            "No web sources found. "
+            f"ML model verdict: {verdict} (confidence: {int(score)}%). "
+            f"Model reason: {ml_result.get('reason', '')}"
+        ),
         "source_type": ml_result.get("source_type", "ml"),
-        "tags": ["auto-verified"],
+        "tags": ["ml-fallback", "no-web-sources"],
         "sources": []
     }
