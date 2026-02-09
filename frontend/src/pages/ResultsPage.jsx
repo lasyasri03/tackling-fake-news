@@ -42,7 +42,8 @@ export default function ResultsPage() {
   }, []);
 
   useEffect(() => {
-    socketRef.current = io("http://localhost:8000");
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:8000";
+    socketRef.current = io(apiUrl);
 
     socketRef.current.on("connect", () => {
       console.log("Connected to WebSocket");

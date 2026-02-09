@@ -7,17 +7,26 @@ const NewsAnalyzer = require('./newsAnalyzer');
 // Initialize
 const app = express();
 const server = http.createServer(app);
+
+// CORS configuration for deployment
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:8000',
+    process.env.FRONTEND_URL || '*'
+  ],
+  methods: ['GET', 'POST'],
+  credentials: true
+};
+
 const io = socketIO(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
-  }
+  cors: corsOptions
 });
 
 const analyzer = new NewsAnalyzer();
 
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes

@@ -9,10 +9,11 @@ const FakeNewsChecker = () => {
   const checkNews = async () => {
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:8000/predict', {
-        text: inputText
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+      const response = await axios.post(`${apiUrl}/analyze`, {
+        claim: inputText
       });
-      setVerdict(response.data.verdict);  // adjust if your response key is different
+      setVerdict(response.data.verdict);
     } catch (error) {
       console.error('Error checking news:', error);
       setVerdict('Error occurred');
