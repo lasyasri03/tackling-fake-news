@@ -1,0 +1,11 @@
+{
+  "projects": [
+    {
+      "name": "tackling-fake-news-frontend",
+      "rootDirectory": "frontend",
+      "buildCommand": "npm run build",
+      "outputDirectory": "build",
+      "framework": "create-react-app"
+    }
+  ]
+}
