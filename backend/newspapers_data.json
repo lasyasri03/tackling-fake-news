@@ -1,0 +1,326 @@
+[
+  {
+    "id": "news_001",
+    "title": "India's Chandrayaan-3 Successfully Lands on Moon's South Pole",
+    "source": "ISRO Official",
+    "publication_type": "government",
+    "date": "2023-08-23",
+    "content": "The Indian Space Research Organisation (ISRO) announced the successful landing of Chandrayaan-3 on the Luna's south pole region. This marks India's second successful lunar mission.",
+    "category": "space",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "India successfully landed Chandrayaan-3 on the moon's south pole in 2023",
+        "verdict": "REAL",
+        "confidence": 0.99,
+        "details": "Official announcement from ISRO. Chandrayaan-3 soft-landed on August 23, 2023."
+      }
+    ]
+  },
+  {
+    "id": "news_002",
+    "title": "Virat Kohli and Anushka Sharma's Wedding in 2017",
+    "source": "Entertainment Today",
+    "publication_type": "newspaper",
+    "date": "2017-12-11",
+    "content": "Bollywood actress Anushka Sharma and Indian cricket captain Virat Kohli got married in an intimate ceremony in Tuscany, Italy on December 11, 2017.",
+    "category": "celebrity",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Virat Kohli married Anushka Sharma",
+        "verdict": "REAL",
+        "confidence": 0.99,
+        "details": "Wedding ceremony held on December 11, 2017 in Tuscany, Italy"
+      }
+    ]
+  },
+  {
+    "id": "news_003",
+    "title": "MS Dhoni Marries Sakshi Singh Rawat",
+    "source": "Cricket News Daily",
+    "publication_type": "newspaper",
+    "date": "2010-07-06",
+    "content": "Former Indian cricket captain MS Dhoni (Mahendra Singh Dhoni) married Sakshi Singh Rawat in a traditional wedding ceremony on July 6, 2010. The couple has been together since.",
+    "category": "celebrity",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "MS Dhoni married Sakshi Singh Rawat",
+        "verdict": "REAL",
+        "confidence": 0.99,
+        "details": "Wedding on July 6, 2010. MS Dhoni is a former Indian cricket captain."
+      }
+    ]
+  },
+  {
+    "id": "news_004",
+    "title": "Scientific Fact: Earth's Shape and Rotation",
+    "source": "NASA",
+    "publication_type": "government",
+    "date": "2020-01-15",
+    "content": "NASA confirms that Earth is an oblate spheroid (slightly flattened sphere) and rotates on its axis, causing the sun to appear to rise in the east and set in the west.",
+    "category": "science",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "The sun rises in the east",
+        "verdict": "REAL",
+        "confidence": 0.99,
+        "details": "Due to Earth's rotation on its axis. The sun appears to rise in the east and set in the west."
+      },
+      {
+        "claim": "Earth is flat",
+        "verdict": "FAKE",
+        "confidence": 0.99,
+        "details": "Earth is spherical/oblate spheroid, proven by NASA and physics"
+      }
+    ]
+  },
+  {
+    "id": "news_005",
+    "title": "WHO Confirms Vaccine Efficacy",
+    "source": "World Health Organization",
+    "publication_type": "government",
+    "date": "2023-06-20",
+    "content": "The World Health Organization (WHO) released a comprehensive report on vaccine effectiveness across multiple continents. Vaccines have prevented millions of deaths since their introduction.",
+    "category": "health",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Vaccines save lives",
+        "verdict": "REAL",
+        "confidence": 0.99,
+        "details": "WHO reports vaccines have saved millions of lives worldwide"
+      }
+    ]
+  },
+  {
+    "id": "news_006",
+    "title": "Apollo Moon Landing: Historical Facts",
+    "source": "NASA Historical Records",
+    "publication_type": "government",
+    "date": "2019-07-20",
+    "content": "NASA marks the 50th anniversary of the Apollo 11 moon landing on July 20, 1969. The mission successfully landed humans on the moon with extensive physical evidence and documentation.",
+    "category": "history",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Moon landing was real",
+        "verdict": "REAL",
+        "confidence": 0.99,
+        "details": "Apollo 11 landed on the moon on July 20, 1969. Well-documented with physical evidence."
+      },
+      {
+        "claim": "Moon landing was fake",
+        "verdict": "FAKE",
+        "confidence": 0.98,
+        "details": "Moon landings are real events with extensive documentation and physical evidence"
+      }
+    ]
+  },
+  {
+    "id": "news_007",
+    "title": "Physics: Water Boiling Point at Sea Level",
+    "source": "Scientific American",
+    "publication_type": "magazine",
+    "date": "2021-03-10",
+    "content": "Water's boiling point is exactly 100 degrees Celsius (212 degrees Fahrenheit) at one atmosphere of pressure at sea level. This is a fundamental principle in physics and chemistry.",
+    "category": "science",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Water boils at 100 degrees Celsius",
+        "verdict": "REAL",
+        "confidence": 0.99,
+        "details": "At sea level, water boils at 100°C (212°F). Basic physics principle."
+      }
+    ]
+  },
+  {
+    "id": "mag_001",
+    "title": "Forbes: Top 100 Billionaires 2023",
+    "source": "Forbes Magazine",
+    "publication_type": "magazine",
+    "date": "2023-04-15",
+    "content": "Forbes released its annual list of the world's billionaires. Elon Musk leads the list with a net worth exceeding $200 billion, followed by other tech entrepreneurs and business leaders.",
+    "category": "business",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Elon Musk is among the world's richest people",
+        "verdict": "REAL",
+        "confidence": 0.98,
+        "details": "Consistently ranks as one of the world's wealthiest individuals according to Forbes"
+      }
+    ]
+  },
+  {
+    "id": "mag_002",
+    "title": "National Geographic: Climate Change Impact",
+    "source": "National Geographic Magazine",
+    "publication_type": "magazine",
+    "date": "2023-05-20",
+    "content": "National Geographic's comprehensive report shows that global temperatures have risen by approximately 1.1°C since pre-industrial times, primarily due to human activities and greenhouse gas emissions.",
+    "category": "environment",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Global temperatures have risen due to human activities",
+        "verdict": "REAL",
+        "confidence": 0.99,
+        "details": "1.1°C increase since pre-industrial times, primarily from greenhouse gases"
+      },
+      {
+        "claim": "Climate change is not real",
+        "verdict": "FAKE",
+        "confidence": 0.99,
+        "details": "Climate change is real and scientifically documented. Evidence from NASA, IPCC, and National Geographic"
+      }
+    ]
+  },
+  {
+    "id": "mag_003",
+    "title": "TIME Magazine: The AI Revolution",
+    "source": "TIME Magazine",
+    "publication_type": "magazine",
+    "date": "2023-06-10",
+    "content": "TIME's feature on Artificial Intelligence discusses how AI is transforming industries, from healthcare to finance. The technology has shown remarkable progress in natural language processing and image recognition.",
+    "category": "technology",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Artificial Intelligence is transforming industries",
+        "verdict": "REAL",
+        "confidence": 0.98,
+        "details": "AI is actively changing healthcare, finance, and many other sectors. Well documented by TIME and tech experts."
+      }
+    ]
+  },
+  {
+    "id": "mag_004",
+    "title": "The Economist: Global Economy 2023",
+    "source": "The Economist Magazine",
+    "publication_type": "magazine",
+    "date": "2023-03-25",
+    "content": "The Economist reports on global economic trends showing mixed growth across regions. Inflation remains a concern in developed nations while emerging markets show resilience.",
+    "category": "economy",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Global inflation is affecting developed nations",
+        "verdict": "REAL",
+        "confidence": 0.97,
+        "details": "Inflation concerns documented by The Economist and world economic institutions"
+      }
+    ]
+  },
+  {
+    "id": "mag_005",
+    "title": "Vogue: Fashion Industry Report",
+    "source": "Vogue Magazine",
+    "publication_type": "magazine",
+    "date": "2023-09-01",
+    "content": "Vogue's analysis of the fashion industry shows sustainable fashion is becoming mainstream, with major brands incorporating eco-friendly practices and ethical sourcing.",
+    "category": "lifestyle",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Sustainable fashion is becoming mainstream",
+        "verdict": "REAL",
+        "confidence": 0.95,
+        "details": "Major fashion brands are adopting sustainable practices and ethical sourcing according to Vogue"
+      }
+    ]
+  },
+  {
+    "id": "mag_006",
+    "title": "Nature Journal: DNA Discovery Milestone",
+    "source": "Nature Magazine",
+    "publication_type": "magazine",
+    "date": "2023-07-15",
+    "content": "Nature reports on landmark DNA research showing new insights into genetic engineering and personalized medicine. Scientists have made breakthroughs in CRISPR gene-editing technology.",
+    "category": "science",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "CRISPR gene-editing technology is advancing",
+        "verdict": "REAL",
+        "confidence": 0.97,
+        "details": "Significant breakthroughs in CRISPR reported by Nature and leading scientists"
+      }
+    ]
+  },
+  {
+    "id": "news_008",
+    "title": "FAKE: Earth's Core is Ice - DEBUNKED",
+    "source": "Fact Check Weekly",
+    "publication_type": "newspaper",
+    "date": "2023-08-01",
+    "content": "A viral claim states that Earth's core is made of ice. This is FALSE. Scientific evidence clearly shows Earth's core consists of solid and liquid iron at extremely high temperatures.",
+    "category": "science",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Earth's core is made of ice",
+        "verdict": "FAKE",
+        "confidence": 0.99,
+        "details": "False claim. Earth's core is made of iron (solid inner core and liquid outer core) at temperatures around 5000-7000K"
+      }
+    ]
+  },
+  {
+    "id": "news_009",
+    "title": "FAKE: Humans Have Gills - Debunked",
+    "source": "Medical Fact Check",
+    "publication_type": "newspaper",
+    "date": "2023-09-12",
+    "content": "A viral TikTok claims humans can develop gills. This is completely false and scientifically impossible. Humans are mammals and cannot develop gills.",
+    "category": "health",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Humans can develop gills to breathe underwater",
+        "verdict": "FAKE",
+        "confidence": 0.99,
+        "details": "Completely false. Humans are mammals and cannot develop gills. Biologically impossible."
+      }
+    ]
+  },
+  {
+    "id": "mag_007",
+    "title": "Wired Magazine: Internet Future",
+    "source": "Wired Magazine",
+    "publication_type": "magazine",
+    "date": "2023-10-05",
+    "content": "Wired explores the future of the internet with Web3, blockchain, and decentralized technologies. Experts discuss how these technologies could reshape digital interaction and data ownership.",
+    "category": "technology",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Web3 and blockchain technologies are evolving",
+        "verdict": "REAL",
+        "confidence": 0.96,
+        "details": "Active development of blockchain and Web3 technologies documented by Wired and tech industry"
+      }
+    ]
+  },
+  {
+    "id": "mag_008",
+    "title": "Smithsonian Magazine: Ancient Civilizations Discovery",
+    "source": "Smithsonian Magazine",
+    "publication_type": "magazine",
+    "date": "2023-08-30",
+    "content": "Smithsonian Magazine reports on archaeological discoveries revealing new insights into ancient Egyptian civilization. Recently uncovered artifacts provide evidence of advanced engineering techniques.",
+    "category": "history",
+    "verified": true,
+    "facts": [
+      {
+        "claim": "Ancient Egypt had advanced engineering techniques",
+        "verdict": "REAL",
+        "confidence": 0.98,
+        "details": "Archaeological evidence confirms sophisticated engineering in ancient Egypt. Documented by Smithsonian research."
+      }
+    ]
+  }
+]

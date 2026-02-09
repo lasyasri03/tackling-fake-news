@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Analyze from './pages/Analyze';
-import Results from './pages/Results';
-import Feedback from './pages/Feedback';
+import Home from './pages/HomePage';
+import Analyze from './pages/AnalyzePage';
+import Results from './pages/ResultsPage';
+import Feedback from './pages/FeedbackPage';
 
 const App = () => {
   return (

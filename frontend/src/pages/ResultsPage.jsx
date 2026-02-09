@@ -10,7 +10,7 @@ import {
   Box,
   Slide,
 } from "@mui/material";
-import StatsChart from "../components/StatsChart";
+import StatsChart from "../components/StatsCharts";
 
 export default function ResultsPage() {
   const [results, setResults] = useState([]);
@@ -26,12 +26,18 @@ export default function ResultsPage() {
 
   useEffect(() => {
     fetch("http://localhost:8000/recent-results")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        return res.json();
+      })
       .then((data) => {
         setResults(data);
         const fakeCount = data.filter((item) => item.verdict === "FAKE").length;
         const realCount = data.filter((item) => item.verdict === "REAL").length;
         setStats({ fake: fakeCount, real: realCount });
+      })
+      .catch((error) => {
+        console.error("Failed to fetch analysis results:", error);
       });
   }, []);
 
@@ -72,9 +78,15 @@ export default function ResultsPage() {
         Real-Time Fake News Detection Results
       </Typography>
 
-      <StatsChart stats={stats} />
+      <Box sx={{ mb: 5, mt: 4 }}>
+        <StatsChart stats={stats} />
+      </Box>
 
-      <Grid container spacing={3} sx={{ mt: 3 }}>
+      <Typography variant="h5" gutterBottom align="center" sx={{ mt: 5, mb: 3 }} fontWeight="bold">
+        Recent Analyses
+      </Typography>
+
+      <Grid container spacing={3} sx={{ mt: 1 }}>
         {results.length === 0 ? (
           <Typography variant="body1" color="textSecondary" sx={{ m: 3 }}>
             No analysis results yet. Start analyzing articles to see them here.
