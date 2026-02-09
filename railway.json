@@ -1,10 +1,26 @@
 {
-  "$schema": "https://json.schemastore.org/railway.json",
-  "build": {
-    "builder": "nixpacks"
-  },
-  "deploy": {
-    "startCommand": "node backend/server.js",
-    "restartPolicyMaxRetries": 5
-  }
+  "services": [
+    {
+      "name": "tackling-fake-news-backend",
+      "runtime": "node",
+      "buildCommand": "npm install",
+      "startCommand": "node backend/server.js",
+      "environmentSlug": "node",
+      "envVars": [
+        {
+          "key": "PORT",
+          "value": "8000"
+        },
+        {
+          "key": "NODE_ENV",
+          "value": "production"
+        },
+        {
+          "key": "FRONTEND_URL",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "postgres": null
 }
